@@ -6,7 +6,6 @@ import Kpis from '../pages/Kpis';
 import Measures from '../pages/Measures';
 
 const Router = () => (
-  <BrowserRouter>
     <Routes>
       <Route path='/' element={<Home/>} />
       <Route path='/control' element={<Control/>} />
@@ -14,7 +13,6 @@ const Router = () => (
       <Route path='/kpis' element={<Kpis/>} />
       <Route path='/measures' element={<Measures/>} />
     </Routes>
-  </BrowserRouter>
 );
 
 export default Router;
