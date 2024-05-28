@@ -1,1 +1,1 @@
-# Bashir Salisu Sidi - Indica Test
+# Bashir Salisu Sidi - Indica Frontend Test
