@@ -5,18 +5,37 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import SecurityIcon from "@mui/icons-material/Security";
 import { useNavigate } from 'react-router-dom';
+import { useHomeDataQuery } from "../services/queries/campus.query";
+import { useEffect } from "react";
 
 type Props = object;
-
-interface LinkData {
-  name: string;
-  icon: "DescriptionIcon" | "BarChartIcon" | "TrendingUpIcon" | "SecurityIcon";
-  link: string;
-}
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Home = (_props: Props) => {
   const navigate = useNavigate();
+
+  const {
+    isLoading,
+    data,
+    error,
+  } = useHomeDataQuery();
+
+  useEffect(() => {
+
+  }, [])
+
+  if(error){
+    return (
+      <h1>Something went wrong: server error...</h1>
+    )
+  }
+
+  if(isLoading){
+    return (
+      <h1>Loading...</h1>
+    )
+  }
+
   const iconMap: Record<string, JSX.Element> = {
     DescriptionIcon: <DescriptionIcon />,
     BarChartIcon: <BarChartIcon />,
@@ -24,16 +43,9 @@ const Home = (_props: Props) => {
     SecurityIcon: <SecurityIcon />,
   };
 
-  const apiData: LinkData[] = [
-    { name: "Details", icon: "DescriptionIcon", link: "/details" },
-    { name: "Measures", icon: "BarChartIcon", link: "/measures" },
-    { name: "KPIS", icon: "TrendingUpIcon", link: "/kpis" },
-    { name: "Control", icon: "SecurityIcon", link: "/control" },
-  ];
   return (
     <div>
       <Box
-        component="footer"
         sx={{
           backgroundColor: "#fff",
           p: { xs: 0, md: 6 },
@@ -65,7 +77,7 @@ const Home = (_props: Props) => {
             >
               <Box
                 component="img"
-                src="/images/plane.gif"
+                src={data?.plane}
                 alt="Brand Logo"
                 sx={{
                   width: "100%",
@@ -95,7 +107,7 @@ const Home = (_props: Props) => {
               <Box sx={{}}>
                 <Box
                   component="img"
-                  src="/images/mapbox_logo.png"
+                  src={data?.logo}
                   alt="Brand Logo"
                   sx={{
                     width: "90%",
@@ -115,11 +127,11 @@ const Home = (_props: Props) => {
                     justifyContent: "center",
                   }}
                 >
-                  Campus
+                  {data?.company_name}
                 </Typography>
 
                 <Box>
-                  {apiData.map((item, index) => (
+                  {data?.data?.map((item, index) => (
                     <Box
                       key={index}
                       display="flex"
@@ -128,7 +140,7 @@ const Home = (_props: Props) => {
                         fontSize: "60px",
                         cursor: "pointer",
                       }}
-                      onClick={() => navigate(`${item?.link}`)}
+                      onClick={() => navigate(`${item?.url}`)}
                     >
                       <IconButton
                         sx={{
@@ -150,7 +162,7 @@ const Home = (_props: Props) => {
                         }}
                         variant="body1"
                       >
-                        {item.name}
+                        {item.label}
                       </Typography>
                     </Box>
                   ))}

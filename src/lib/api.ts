@@ -2,7 +2,7 @@ import axios, { type AxiosInstance, type AxiosRequestConfig } from "axios";
 import { errorInterceptor, requestInterceptor, successInterceptor } from "./interceptors";
 
 const axiosRequestConfig: AxiosRequestConfig = {
-  baseURL: "",
+  baseURL: "https://indicabackend-production.up.railway.app/campus",
   responseType: "json",
   headers: {
     "Content-Type": "application/json",
