@@ -41,7 +41,11 @@ const Measures = () => {
   }
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+        <h1>Loading...</h1>
+      </Box>
+    );
   }
 
   return (

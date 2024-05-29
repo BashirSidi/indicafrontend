@@ -7,7 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 
 import { useControlDataQuery } from "../services/queries/campus.query";
 import { useNavigate } from "react-router-dom";
@@ -41,8 +41,25 @@ const Control = () => {
   }
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+        <h1>Loading...</h1>
+      </Box>
+    );
   }
+
+  const getStatusColor = (status: string): string => {
+    switch (status) {
+      case "normal":
+        return "#00FF00";
+      case "warning":
+        return "#FFFF00";
+      case "critical":
+        return "#FF0000";
+      default:
+        return "#000000";
+    }
+  };
 
   return (
     <div>
@@ -86,7 +103,19 @@ const Control = () => {
                     <StyledTableCell component="th" scope="row">
                       {data.name}
                     </StyledTableCell>
-                    <StyledTableCell align="right">{data.status}</StyledTableCell>
+                    <StyledTableCell align="right">
+                      <Typography
+                        sx={{
+                          bgcolor: `${getStatusColor(data.status)}`,
+                          fontWeight: 700,
+                          display: "inline",
+                          padding: "2px 4px",
+                          borderRadius: "4px",
+                        }}
+                      >
+                        {data.status}
+                      </Typography>
+                    </StyledTableCell>
                   </StyledTableRow>
                 ))}
               </TableBody>
