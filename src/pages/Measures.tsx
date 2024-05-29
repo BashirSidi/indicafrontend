@@ -1,8 +1,4 @@
-import React from 'react'
-
-type Props = {}
-
-const Measures = (props: Props) => {
+const Measures = () => {
   return (
     <div>
       Measures page

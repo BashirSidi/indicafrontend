@@ -1,8 +1,4 @@
-import React from 'react'
-
-type Props = {}
-
-const Control = (props: Props) => {
+const Control = () => {
   return (
     <div>
       Control page

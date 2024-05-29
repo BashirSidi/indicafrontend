@@ -1,8 +1,4 @@
-import React from 'react'
-
-type Props = {}
-
-const Kpis = (props: Props) => {
+const Kpis = () => {
   return (
     <div>
       Kpis page
