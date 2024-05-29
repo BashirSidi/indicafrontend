@@ -1,12 +1,15 @@
-import Router from "./routes"
+import Router from "./routes";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const App = () => {
-
+  const queryClient = new QueryClient();
   return (
-    <div>
+    <QueryClientProvider client={queryClient}>
       <Router />
-    </div>
-  )
-}
+      <ReactQueryDevtools initialIsOpen position="right" buttonPosition="bottom-right" />
+    </QueryClientProvider>
+  );
+};
 
-export default App
+export default App;
