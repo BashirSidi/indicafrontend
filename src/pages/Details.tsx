@@ -1,8 +1,4 @@
-import React from 'react'
-
-type Props = {}
-
-const Details = (props: Props) => {
+const Details = () => {
   return (
     <div>
       Details page
