@@ -42,7 +42,7 @@ const Kpis = () => {
 
   if (isLoading) {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+      <Box display="flex" justifyContent="center" alignItems="flex-start" height="100vh">
         <h1>Loading...</h1>
       </Box>
     );

@@ -42,7 +42,7 @@ const Control = () => {
 
   if (isLoading) {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+      <Box display="flex" justifyContent="center" alignItems="flex-start" height="100vh">
         <h1>Loading...</h1>
       </Box>
     );
@@ -51,11 +51,11 @@ const Control = () => {
   const getStatusColor = (status: string): string => {
     switch (status) {
       case "normal":
-        return "#00FF00";
+        return "#A3D9A5";
       case "warning":
-        return "#FFFF00";
+        return "#FFF59D";
       case "critical":
-        return "#FF0000";
+        return "#FFAB91";
       default:
         return "#000000";
     }
@@ -107,10 +107,9 @@ const Control = () => {
                       <Typography
                         sx={{
                           bgcolor: `${getStatusColor(data.status)}`,
-                          fontWeight: 700,
                           display: "inline",
-                          padding: "2px 4px",
-                          borderRadius: "4px",
+                          padding: "4px 6px",
+                          borderRadius: "10px",
                         }}
                       >
                         {data.status}
