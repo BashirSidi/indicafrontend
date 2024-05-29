@@ -1,9 +1,10 @@
 import Grid from "@mui/material/Grid";
-import { Box, Container, IconButton, Typography } from "@mui/material";
+import { Box, Container, IconButton, ThemeProvider, Typography, createTheme } from "@mui/material";
 import DescriptionIcon from "@mui/icons-material/Description";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import SecurityIcon from "@mui/icons-material/Security";
+import { useNavigate } from 'react-router-dom';
 
 type Props = object;
 
@@ -15,6 +16,7 @@ interface LinkData {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Home = (_props: Props) => {
+  const navigate = useNavigate();
   const iconMap: Record<string, JSX.Element> = {
     DescriptionIcon: <DescriptionIcon />,
     BarChartIcon: <BarChartIcon />,
@@ -34,7 +36,8 @@ const Home = (_props: Props) => {
         component="footer"
         sx={{
           backgroundColor: "#fff",
-          p: { xs: 2, md: 6 },
+          p: { xs: 0, md: 6 },
+          my: {xs: '1.5rem'},
           mb: "20px",
         }}
       >
@@ -43,9 +46,9 @@ const Home = (_props: Props) => {
             container
             sx={{
               border: "3px solid black",
-              height: "80vh",
               borderRadius: "10px",
-              padding: "40px",
+              padding: { xs: "16px", md: "40px", },
+              overflow: 'hidden',
             }}
           >
             <Grid
@@ -57,6 +60,7 @@ const Home = (_props: Props) => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                padding: '1%',
               }}
             >
               <Box
@@ -64,10 +68,10 @@ const Home = (_props: Props) => {
                 src="/images/plane.gif"
                 alt="Brand Logo"
                 sx={{
-                  width: "90%",
-                  height: "60%",
+                  width: "100%",
+                  height: "100%",
                   display: "flex",
-                  my: "12%",
+                  objectFit: 'contain',
                   mr: "40px",
                   mx: { xs: "auto" },
                   "&:hover": {
@@ -77,7 +81,17 @@ const Home = (_props: Props) => {
               />
             </Grid>
 
-            <Grid item xs={12} md={6} sx={{ order: { xs: 1, md: 2 } }}>
+            <Grid item 
+            xs={12} 
+            md={6} 
+            sx={{ 
+              order: { xs: 1, md: 2 },
+              display: "flex",
+              flexDirection: 'column',
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            >
               <Box sx={{}}>
                 <Box
                   component="img"
@@ -96,7 +110,7 @@ const Home = (_props: Props) => {
                   sx={{
                     display: "flex",
                     fontWeight: 400,
-                    fontSize: "32px",
+                    fontSize:{ xs: '2rem', md: "2.5rem"},
                     px: "auto",
                     justifyContent: "center",
                   }}
@@ -110,18 +124,17 @@ const Home = (_props: Props) => {
                       key={index}
                       display="flex"
                       alignItems="center"
-                      mb={2}
                       sx={{
                         fontSize: "60px",
-                        marginTop: "30px",
                         cursor: "pointer",
                       }}
+                      onClick={() => navigate(`${item?.link}`)}
                     >
                       <IconButton
                         sx={{
                           color: "black",
                           fontWeight: "bold",
-                          fontSize: "26px",
+                          fontSize: {xs: '1.5rem', md: '2.5rem'},
                           "&:hover": {
                             backgroundColor: "transparent",
                           },
@@ -130,7 +143,11 @@ const Home = (_props: Props) => {
                         {iconMap[item.icon]}
                       </IconButton>
                       <Typography
-                        sx={{ fontSize: "26px", fontWeight: "bold", ml: "10px" }}
+                        sx={{ 
+                          fontSize: { xs: "23px", md: "30px" }, 
+                          fontWeight: "bold", ml:  "10px",
+                          color: '#1a2c25',
+                        }}
                         variant="body1"
                       >
                         {item.name}
