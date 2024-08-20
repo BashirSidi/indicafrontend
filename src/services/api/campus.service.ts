@@ -8,7 +8,7 @@ import {
 } from "../../types/campus";
 
 export const homeData = async (): Promise<CompanyDataType> => {
-  const { data } = await api.get<CompanyDataType>(`/index`);
+  const { data } = await api.get<CompanyDataType>(`/api/index`);
   return data;
 };
 

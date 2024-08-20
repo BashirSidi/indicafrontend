@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import { Box, Container, IconButton, Typography } from "@mui/material";
+import { AppBar, Box, Container, IconButton, Toolbar, Typography } from "@mui/material";
 import DescriptionIcon from "@mui/icons-material/Description";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
@@ -39,6 +39,43 @@ const Home = (_props: Props) => {
 
   return (
     <div>
+      <AppBar
+        position="static"
+        sx={{
+          background: "#FFFFFF",
+          borderBottom: "2px solid #f05324",
+          height: "80px",
+        }}
+      >
+        <Container maxWidth="lg">
+          <Toolbar disableGutters>
+            <Box
+              component="img"
+              sx={{
+                display: { xs: "none", md: "flex" },
+                width: "100px",
+                height: "32px",
+                marginTop: "12px",
+              }}
+              alt="kangacook Logo"
+              src={data?.logo}
+            />
+
+            <Box
+              component="img"
+              sx={{
+                display: { xs: "flex", md: "none" },
+                margin: "auto",
+                width: "42px",
+                height: "24px",
+                marginTop: "26px",
+              }}
+              alt="kangacook Logo"
+              src={data?.logo}
+            />
+          </Toolbar>
+        </Container>
+      </AppBar>
       <Box
         sx={{
           backgroundColor: "#fff",
@@ -51,7 +88,7 @@ const Home = (_props: Props) => {
           <Grid
             container
             sx={{
-              border: "3px solid black",
+              border: "3px solid #f05324",
               borderRadius: "10px",
               padding: { xs: "16px", md: "40px" },
               overflow: "hidden",
@@ -60,37 +97,7 @@ const Home = (_props: Props) => {
             <Grid
               item
               xs={12}
-              md={6}
-              sx={{
-                order: { xs: 2, md: 1 },
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "1%",
-              }}
-            >
-              <Box
-                component="img"
-                src={data?.plane}
-                alt="Brand Logo"
-                sx={{
-                  width: "100%",
-                  height: "100%",
-                  display: "flex",
-                  objectFit: "contain",
-                  mr: "40px",
-                  mx: { xs: "auto" },
-                  "&:hover": {
-                    cursor: "pointer",
-                  },
-                }}
-              />
-            </Grid>
-
-            <Grid
-              item
-              xs={12}
-              md={6}
+              md={12}
               sx={{
                 order: { xs: 1, md: 2 },
                 display: "flex",
@@ -100,7 +107,7 @@ const Home = (_props: Props) => {
               }}
             >
               <Box sx={{}}>
-                <Box
+                {/* <Box
                   component="img"
                   src={data?.logo}
                   alt="Brand Logo"
@@ -112,7 +119,7 @@ const Home = (_props: Props) => {
                       cursor: "pointer",
                     },
                   }}
-                />
+                /> */}
                 <Typography
                   sx={{
                     display: "flex",
@@ -123,6 +130,16 @@ const Home = (_props: Props) => {
                   }}
                 >
                   {data?.company_name}
+                </Typography>
+
+                <Typography
+                  sx={{
+                    display: "flex",
+                    px: "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  {data?.description}
                 </Typography>
 
                 <Box>
@@ -155,10 +172,11 @@ const Home = (_props: Props) => {
                           fontWeight: "bold",
                           ml: "10px",
                           color: "#1a2c25",
+                          borderBottom: "2px solid #f05324",
                         }}
                         variant="body1"
                       >
-                        {item.label}
+                        {`Manage ${item.label}`}
                       </Typography>
                     </Box>
                   ))}

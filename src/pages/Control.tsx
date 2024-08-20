@@ -73,7 +73,7 @@ const Control = () => {
       >
         <Box
           sx={{
-            border: "3px solid black",
+            border: "3px solid #f05324",
             borderRadius: "10px",
             padding: { xs: "0.5rem", md: "1rem" },
             overflow: "hidden",
@@ -106,13 +106,13 @@ const Control = () => {
                     <StyledTableCell align="right">
                       <Typography
                         sx={{
-                          bgcolor: `${getStatusColor(data.status)}`,
+                          bgcolor: `${getStatusColor(data.status ? "normal" : "critical")}`,
                           display: "inline",
                           padding: "4px 6px",
                           borderRadius: "10px",
                         }}
                       >
-                        {data.status}
+                        {data.status ? "active" : "inactive"}
                       </Typography>
                     </StyledTableCell>
                   </StyledTableRow>

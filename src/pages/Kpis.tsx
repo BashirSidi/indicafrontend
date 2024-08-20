@@ -60,7 +60,7 @@ const Kpis = () => {
       >
         <Box
           sx={{
-            border: "3px solid black",
+            border: "3px solid #f05324",
             borderRadius: "10px",
             padding: { xs: "0.5rem", md: "1rem" },
             overflow: "hidden",

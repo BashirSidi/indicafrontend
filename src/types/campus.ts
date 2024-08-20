@@ -9,6 +9,7 @@ export interface CompanyDataType {
   company_name: string;
   logo: string;
   plane: string;
+  description: string;
   data: DataItem[];
 }
 
