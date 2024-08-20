@@ -11,6 +11,9 @@ import { Button, Typography } from "@mui/material";
 
 import { useControlDataQuery } from "../services/queries/campus.query";
 import { useNavigate } from "react-router-dom";
+import { MdCreateNewFolder, MdEditDocument, MdDelete } from "react-icons/md";
+import { useState } from "react";
+import ModalForm from "../components/ModalForm";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -35,6 +38,17 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const Control = () => {
   const navigate = useNavigate();
   const { isLoading, data, error } = useControlDataQuery();
+
+  const [open, setOpen] = useState<boolean>(false);
+  const [modalType, setModalType] = useState<string>("");
+
+  const handleOpen = (type: string): void => {
+    setOpen(true);
+    setModalType(type);
+  };
+  const handleClose = (): void => {
+    setOpen(false);
+  };
 
   if (error) {
     return <h1>Something went wrong: server error...</h1>;
@@ -63,6 +77,7 @@ const Control = () => {
 
   return (
     <div>
+      <ModalForm open={open} handleClose={handleClose} modalType={modalType} />
       <Box
         sx={{
           backgroundColor: "#fff",
@@ -93,8 +108,15 @@ const Control = () => {
             <Table sx={{ minWidth: "90%" }} aria-label="customized table">
               <TableHead>
                 <TableRow>
-                  <StyledTableCell>Names</StyledTableCell>
-                  <StyledTableCell align="right">Status</StyledTableCell>
+                  <StyledTableCell sx={{ backgroundColor: "#f05324 !important" }}>
+                    Names
+                  </StyledTableCell>
+                  <StyledTableCell sx={{ backgroundColor: "#f05324 !important" }} align="right">
+                    Status
+                  </StyledTableCell>
+                  <StyledTableCell sx={{ backgroundColor: "#f05324 !important" }} align="right">
+                    Action
+                  </StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -114,6 +136,28 @@ const Control = () => {
                       >
                         {data.status ? "active" : "inactive"}
                       </Typography>
+                    </StyledTableCell>
+                    <StyledTableCell align="right">
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "row",
+                          width: "80px",
+                          float: "right",
+                          justifyContent: "space-between",
+                          gap: 2,
+                        }}
+                      >
+                        <MdCreateNewFolder
+                          style={{ color: "green" }}
+                          onClick={() => handleOpen("Create Controls Form")}
+                        />
+                        <MdEditDocument
+                          style={{ color: "gray" }}
+                          onClick={() => handleOpen("Update Controls Form")}
+                        />
+                        <MdDelete style={{ color: "red" }} />
+                      </Box>
                     </StyledTableCell>
                   </StyledTableRow>
                 ))}

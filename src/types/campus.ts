@@ -10,6 +10,7 @@ export interface CompanyDataType {
   logo: string;
   plane: string;
   description: string;
+  features: string[];
   data: DataItem[];
 }
 

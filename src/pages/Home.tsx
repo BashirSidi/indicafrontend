@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import { AppBar, Box, Container, IconButton, Toolbar, Typography } from "@mui/material";
+import { Box, Container, IconButton, List, ListItem, Typography } from "@mui/material";
 import DescriptionIcon from "@mui/icons-material/Description";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
@@ -39,43 +39,6 @@ const Home = (_props: Props) => {
 
   return (
     <div>
-      <AppBar
-        position="static"
-        sx={{
-          background: "#FFFFFF",
-          borderBottom: "2px solid #f05324",
-          height: "80px",
-        }}
-      >
-        <Container maxWidth="lg">
-          <Toolbar disableGutters>
-            <Box
-              component="img"
-              sx={{
-                display: { xs: "none", md: "flex" },
-                width: "100px",
-                height: "32px",
-                marginTop: "12px",
-              }}
-              alt="kangacook Logo"
-              src={data?.logo}
-            />
-
-            <Box
-              component="img"
-              sx={{
-                display: { xs: "flex", md: "none" },
-                margin: "auto",
-                width: "42px",
-                height: "24px",
-                marginTop: "26px",
-              }}
-              alt="kangacook Logo"
-              src={data?.logo}
-            />
-          </Toolbar>
-        </Container>
-      </AppBar>
       <Box
         sx={{
           backgroundColor: "#fff",
@@ -107,19 +70,6 @@ const Home = (_props: Props) => {
               }}
             >
               <Box sx={{}}>
-                {/* <Box
-                  component="img"
-                  src={data?.logo}
-                  alt="Brand Logo"
-                  sx={{
-                    width: "90%",
-                    display: "flex",
-                    mx: { xs: "auto", md: "0" },
-                    "&:hover": {
-                      cursor: "pointer",
-                    },
-                  }}
-                /> */}
                 <Typography
                   sx={{
                     display: "flex",
@@ -141,6 +91,12 @@ const Home = (_props: Props) => {
                 >
                   {data?.description}
                 </Typography>
+
+                <ul>
+                  {data?.features.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
 
                 <Box>
                   {data?.data?.map((item, index) => (
@@ -168,11 +124,13 @@ const Home = (_props: Props) => {
                       </IconButton>
                       <Typography
                         sx={{
-                          fontSize: { xs: "23px", md: "30px" },
+                          fontSize: { xs: "15px", md: "20px" },
                           fontWeight: "bold",
+                          padding: "10px",
+                          borderRadius: "10px",
                           ml: "10px",
                           color: "#1a2c25",
-                          borderBottom: "2px solid #f05324",
+                          border: "2px solid #f05324",
                         }}
                         variant="body1"
                       >
